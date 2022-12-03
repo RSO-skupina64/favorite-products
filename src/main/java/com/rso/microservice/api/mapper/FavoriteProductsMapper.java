@@ -4,7 +4,7 @@ import com.rso.microservice.api.dto.FavoriteProductsArrayResponseDto;
 import com.rso.microservice.api.dto.ProductDto;
 import com.rso.microservice.entity.Product;
 import com.rso.microservice.entity.Type;
-import com.rso.microservice.vao.FavoriteProductListVAO;
+import com.rso.microservice.vao.FavoriteProductsListVAO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,7 +15,7 @@ public interface FavoriteProductsMapper {
 
     @Mapping(source = "products", target = "products")
     @Mapping(source = "count", target = "count")
-    FavoriteProductsArrayResponseDto toModel(FavoriteProductListVAO favoriteProductListVAO);
+    FavoriteProductsArrayResponseDto toModel(FavoriteProductsListVAO favoriteProductsListVAO);
 
     List<ProductDto> toModel(List<Product> products);
 

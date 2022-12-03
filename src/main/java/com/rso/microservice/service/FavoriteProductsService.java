@@ -3,7 +3,7 @@ package com.rso.microservice.service;
 
 import com.rso.microservice.entity.Product;
 import com.rso.microservice.repository.FavoriteProductsRepository;
-import com.rso.microservice.vao.FavoriteProductListVAO;
+import com.rso.microservice.vao.FavoriteProductsListVAO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +17,10 @@ public class FavoriteProductsService {
         this.favoriteProductsRepository = favoriteProductsRepository;
     }
 
-    public FavoriteProductListVAO getFavoriteProductsByUserId(Long userId) {
+    public FavoriteProductsListVAO getFavoriteProductsByUserId(Long userId) {
         List<Product> favoriteProducts = favoriteProductsRepository.findFavoriteProductsByUserId(userId);
 
-        return new FavoriteProductListVAO(favoriteProducts.size(), favoriteProducts);
+        return new FavoriteProductsListVAO(favoriteProducts.size(), favoriteProducts);
     }
 
 }
