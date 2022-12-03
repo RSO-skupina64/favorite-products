@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: favorite-products-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: favorite-products
+  template:
+    metadata:
+      labels:
+        app: favorite-products
+    spec:
+      containers:
+        - image: as9721/favorite-products:2022-11-29-23-24-37
+          name: favorite-products
+          ports:
+            - containerPort: 8080
+              name: server
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: favorite-products
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8082
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: favorite-products
