@@ -5,12 +5,12 @@ import com.rso.microservice.entity.Product;
 
 import java.util.List;
 
-public class FavoriteProductListVAO {
+public class FavoriteProductsListVAO {
 
     private final Integer count;
     private final List<Product> products;
 
-    public FavoriteProductListVAO(int count, List<Product> products) {
+    public FavoriteProductsListVAO(int count, List<Product> products) {
         this.count = count;
         this.products = products;
     }
