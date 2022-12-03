@@ -1,7 +1,7 @@
 package com.rso.microservice.api.mapper;
 
-import com.rso.microservice.api.dto.favoriteproducts.FavoriteProductsArrayResponseDto;
-import com.rso.microservice.api.dto.products.ProductDto;
+import com.rso.microservice.api.dto.FavoriteProductsArrayResponseDto;
+import com.rso.microservice.api.dto.ProductDto;
 import com.rso.microservice.entity.Product;
 import com.rso.microservice.entity.Type;
 import com.rso.microservice.vao.FavoriteProductListVAO;

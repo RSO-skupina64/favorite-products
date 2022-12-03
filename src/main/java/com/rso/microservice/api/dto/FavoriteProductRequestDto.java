@@ -1,4 +1,4 @@
-package com.rso.microservice.api.dto.favoriteproducts;
+package com.rso.microservice.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

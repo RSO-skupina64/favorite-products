@@ -2,8 +2,8 @@ package com.rso.microservice.api;
 
 import com.rso.microservice.api.dto.ErrorDto;
 import com.rso.microservice.api.dto.MessageDto;
-import com.rso.microservice.api.dto.favoriteproducts.FavoriteProductRequestDto;
-import com.rso.microservice.api.dto.favoriteproducts.FavoriteProductsArrayResponseDto;
+import com.rso.microservice.api.dto.FavoriteProductRequestDto;
+import com.rso.microservice.api.dto.FavoriteProductsArrayResponseDto;
 import com.rso.microservice.api.mapper.FavoriteProductsMapper;
 import com.rso.microservice.service.FavoriteProductsService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
