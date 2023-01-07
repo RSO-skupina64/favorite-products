@@ -91,6 +91,7 @@ public class FavoriteProductsAPI {
                     content = @Content(schema = @Schema(implementation = ErrorDto.class)))
     })
     public ResponseEntity<FavoriteProductsArrayResponseDto> getFavoriteProducts(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        // todo RokM userId from jwt token
         Long userId = 1L;
         return ResponseEntity.status(HttpStatus.OK)
                 .body(favoriteProductsMapper.toModel(favoriteProductsService.getFavoriteProductsByUserId(userId)));

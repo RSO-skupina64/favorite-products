@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 public class FavoriteProductRequestDto {
 
     @JsonProperty("product_id")
-    @NotBlank(message = " is required.")
+    @NotBlank(message = "is required.")
     private Long id;
 
     public Long getId() {
