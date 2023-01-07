@@ -3,7 +3,7 @@ package com.rso.microservice.api.mapper;
 import com.rso.microservice.api.dto.FavoriteProductsArrayResponseDto;
 import com.rso.microservice.api.dto.ProductDto;
 import com.rso.microservice.entity.Product;
-import com.rso.microservice.entity.Type;
+import com.rso.microservice.entity.ProductType;
 import com.rso.microservice.vao.FavoriteProductsListVAO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,5 +22,5 @@ public interface FavoriteProductsMapper {
     ProductDto toModel(Product product);
 
     @Mapping(source = "name", target = ".")
-    String toModel(Type type);
+    String toModel(ProductType productType);
 }

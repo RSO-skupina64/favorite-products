@@ -2,6 +2,7 @@ package com.rso.microservice.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteProductsArrayResponseDto {
@@ -11,6 +12,10 @@ public class FavoriteProductsArrayResponseDto {
 
     @JsonProperty("products")
     List<ProductDto> products;
+
+    public FavoriteProductsArrayResponseDto() {
+        this.products = new ArrayList<>();
+    }
 
     public Integer getCount() {
         return count;
