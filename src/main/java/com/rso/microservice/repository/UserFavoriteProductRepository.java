@@ -1,6 +1,7 @@
 package com.rso.microservice.repository;
 
 import com.rso.microservice.entity.Product;
+import com.rso.microservice.entity.User;
 import com.rso.microservice.entity.UserFavoriteProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface UserFavoriteProductRepository extends JpaRepository<UserFavorit
 
     @Query(value = "SELECT fp.product FROM UserFavoriteProduct fp LEFT JOIN fp.product p LEFT JOIN fp.user u WHERE u.id = :userId")
     List<Product> findFavoriteProductsByUserId(@Param("userId") Long userId);
+
+    List<UserFavoriteProduct> findByUserAndProduct(User user, Product product);
 }
