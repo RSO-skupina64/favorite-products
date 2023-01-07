@@ -13,6 +13,8 @@ public interface FavoriteProductsMapper {
     @Mapping(source = "count", target = "count")
     FavoriteProductsArrayResponseDto toModel(FavoriteProductsListVAO favoriteProductsListVAO);
 
-    @Mapping(source = "name", target = ".")
-    String toModel(ProductType productType);
+    default String toModel(ProductType productType) {
+        return productType.getName();
+    }
+
 }

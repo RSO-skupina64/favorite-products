@@ -25,7 +25,7 @@ public class FavoriteProductsService {
     }
 
     public FavoriteProductsListVAO getFavoriteProductsByUserId(Long userId) {
-        List<Product> favoriteProducts = userFavoriteProductService.findFavoriteProducts(userId);
+        List<Product> favoriteProducts = productService.findFavoriteProducts(userId);
 
         return new FavoriteProductsListVAO(favoriteProducts.size(), favoriteProducts);
     }
@@ -46,6 +46,10 @@ public class FavoriteProductsService {
         }
 
         return userFavoriteProductService.createUserFavoriteProduct(userFavoriteProduct);
+    }
+
+    public void removeUserFavoriteProduct(Long userId, Long productId) {
+        userFavoriteProductService.removeUserFavoriteProduct(userId, productId);
     }
 
 }

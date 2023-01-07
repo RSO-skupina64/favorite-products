@@ -13,7 +13,7 @@ public class ProductDto {
     @JsonProperty("brand")
     private String brand;
 
-    @JsonProperty("productType")
+    @JsonProperty("product_type")
     private String productType;
 
     @JsonProperty("concentration")

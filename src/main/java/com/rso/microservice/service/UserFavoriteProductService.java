@@ -1,7 +1,6 @@
 package com.rso.microservice.service;
 
 
-import com.rso.microservice.entity.Product;
 import com.rso.microservice.entity.UserFavoriteProduct;
 import com.rso.microservice.repository.UserFavoriteProductRepository;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,6 @@ public class UserFavoriteProductService {
         this.userFavoriteProductRepository = userFavoriteProductRepository;
     }
 
-    public List<Product> findFavoriteProducts(Long userId) {
-        return userFavoriteProductRepository.findFavoriteProductsByUserId(userId);
-    }
-
     public UserFavoriteProduct createUserFavoriteProduct(UserFavoriteProduct userFavoriteProduct) {
         List<UserFavoriteProduct> userFavoriteProductList = userFavoriteProductRepository.findByUserAndProduct(
                 userFavoriteProduct.getUser(), userFavoriteProduct.getProduct());
@@ -29,6 +24,10 @@ public class UserFavoriteProductService {
         }
 
         return userFavoriteProductRepository.save(userFavoriteProduct);
+    }
+
+    public void removeUserFavoriteProduct(Long userId, Long productId) {
+        userFavoriteProductRepository.deleteByUserIdAndProductId(userId, productId);
     }
 
 }

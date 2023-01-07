@@ -85,9 +85,15 @@ public class FavoriteProductsAPI {
             @ApiResponse(responseCode = "500", description = "Internal server error",
                     content = @Content(schema = @Schema(implementation = ErrorDto.class)))
     })
-    public ResponseEntity<MessageDto> removeFavoriteProduct(@Valid @RequestBody FavoriteProductRequestDto favoriteProductRequest, @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
-        // todo: add code here
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+    public ResponseEntity<MessageDto> removeFavoriteProduct(
+            @Valid @RequestBody FavoriteProductRequestDto favoriteProductRequest,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        log.info("removeFavoriteProduct: ENTRY");
+        // todo RokM userId from jwt token
+        Long userId = 1L;
+        favoriteProductsService.removeUserFavoriteProduct(userId, favoriteProductRequest.getId());
+        log.info("removeFavoriteProduct: EXIT");
+        return ResponseEntity.status(HttpStatus.OK).body(new MessageDto("removeFavoriteProduct completed"));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
