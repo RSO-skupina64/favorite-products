@@ -6,6 +6,7 @@ import com.rso.microservice.api.dto.FavoriteProductsArrayResponseDto;
 import com.rso.microservice.api.dto.MessageDto;
 import com.rso.microservice.api.mapper.FavoriteProductsMapper;
 import com.rso.microservice.entity.UserFavoriteProduct;
+import com.rso.microservice.service.AuthenticationService;
 import com.rso.microservice.service.FavoriteProductsService;
 import com.rso.microservice.vao.FavoriteProductsListVAO;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -39,13 +40,16 @@ public class FavoriteProductsAPI {
     final FavoriteProductsService favoriteProductsService;
 
     final FavoriteProductsMapper favoriteProductsMapper;
+    final AuthenticationService authenticationService;
 
     @Autowired
 
     public FavoriteProductsAPI(FavoriteProductsService favoriteProductsService,
-                               FavoriteProductsMapper favoriteProductsMapper) {
+                               FavoriteProductsMapper favoriteProductsMapper,
+                               AuthenticationService authenticationService) {
         this.favoriteProductsService = favoriteProductsService;
         this.favoriteProductsMapper = favoriteProductsMapper;
+        this.authenticationService = authenticationService;
     }
 
 
@@ -64,8 +68,7 @@ public class FavoriteProductsAPI {
             @Valid @RequestBody FavoriteProductRequestDto favoriteProductRequest,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
         log.info("addFavoriteProduct: ENTRY");
-        // todo RokM userId from jwt token
-        Long userId = 1L;
+        Long userId = authenticationService.getUserProfileWrapper(jwt);
         UserFavoriteProduct userFavoriteProduct = favoriteProductsService.createUserFavoriteProduct(userId,
                 favoriteProductRequest.getId());
         log.info("addFavoriteProduct: EXIT");
@@ -89,8 +92,7 @@ public class FavoriteProductsAPI {
             @Valid @RequestBody FavoriteProductRequestDto favoriteProductRequest,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
         log.info("removeFavoriteProduct: ENTRY");
-        // todo RokM userId from jwt token
-        Long userId = 1L;
+        Long userId = authenticationService.getUserProfileWrapper(jwt);
         favoriteProductsService.removeUserFavoriteProduct(userId, favoriteProductRequest.getId());
         log.info("removeFavoriteProduct: EXIT");
         return ResponseEntity.status(HttpStatus.OK).body(new MessageDto("removeFavoriteProduct completed"));
@@ -112,8 +114,7 @@ public class FavoriteProductsAPI {
     public ResponseEntity<FavoriteProductsArrayResponseDto> getFavoriteProducts(
             @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
         log.info("fetchProductPricesSpecificShop: ENTRY");
-        // todo RokM userId from jwt token
-        Long userId = 1L;
+        Long userId = authenticationService.getUserProfileWrapper(jwt);
         FavoriteProductsListVAO favoriteProductsList = favoriteProductsService.getFavoriteProductsByUserId(userId);
         log.info("fetchProductPricesSpecificShop: EXIT");
         return ResponseEntity.status(HttpStatus.OK)
